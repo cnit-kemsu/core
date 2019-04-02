@@ -9,10 +9,12 @@ import { useMenu } from '../src/hooks/useMenu';
 import { useElementArray } from '../src/hooks/useElementArray';
 import Dialog from '../src/comps/Dialog';
 import FormDialog from '../src/comps/FormDialog';
+import Form from '../src/comps/Form';
 import ConfirmDialog from '../src/comps/ConfirmDialog';
 import DialogModal from '../src/comps/DialogModal';
 import MenuModal from '../src/comps/MenuModal';
 import List from '../src/comps/List';
+import Paper from '../src/comps/Paper';
 
 import Button from '@material-ui/core/Button';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -20,7 +22,6 @@ import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from "@material-ui/core/styles";
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItem from '@material-ui/core/ListItem';
-
 
 function Dialog1({ dialog: { close, props: { message } } }) {
 
@@ -156,6 +157,8 @@ function App() {
 
   console.log('render App');
 
+  const form = useForm(handleSubmit, initialize, validateForm);
+
   const dialog1 = useDialog();
   const dialog2 = useDialog();
   const dialog3 = useDialog();
@@ -176,6 +179,19 @@ function App() {
         <List>
           {users}
         </List>
+
+        <Paper style={{ width: '600px' }}
+        >
+          <Form form={form} title="Some Form" actions='submit'>
+            <div>
+              <TextField style={{ width: '500px' }} comp={form} name="firstname" />
+            </div>
+            <div>
+              <TextField style={{ width: '500px' }} comp={form} name="lastname" />
+            </div>
+          </Form>  
+        </Paper>
+        
 
         <DialogModal mgr={dialog1}>
           <Dialog1 dialog={dialog1} />
