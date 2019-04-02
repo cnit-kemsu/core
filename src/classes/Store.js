@@ -1,7 +1,7 @@
-import { Publisher } from '@implicit/publisher';
+import { Publisher } from '@kemsu/publisher';
 
 export class Store {
-  changeEvent = new Publisher();
+  updateEvent = new Publisher();
 
   constructor() {
     this.setState = this.setState.bind(this);
@@ -9,6 +9,6 @@ export class Store {
 
   setState(state) {
     this.state = typeof state === 'function' ? state(this.state) : state;
-    this.changeEvent.publish(this.state);
+    this.updateEvent.publish(this.state);
   }
 }

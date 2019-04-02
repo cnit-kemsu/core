@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { TextField } from '@implicit/inputs';
-import { useForm } from '@implicit/form';
+import { TextField } from '@kemsu/inputs';
+import { useForm } from '@kemsu/form';
 
 import { useDialog } from '../src/hooks/useDialog';
 import { useMenu } from '../src/hooks/useMenu';
 import { useElementArray } from '../src/hooks/useElementArray';
-import DialogFormContent from '../src/comps/DialogFormContent';
-import DialogContent from '../src/comps/DialogContent';
 import Dialog from '../src/comps/Dialog';
-import Menu from '../src/comps/Menu';
+import FormDialog from '../src/comps/FormDialog';
+import ConfirmDialog from '../src/comps/ConfirmDialog';
+import DialogModal from '../src/comps/DialogModal';
+import MenuModal from '../src/comps/MenuModal';
 import List from '../src/comps/List';
-
 
 import Button from '@material-ui/core/Button';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -22,12 +22,12 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ListItem from '@material-ui/core/ListItem';
 
 
-function Dialog1({ dialog: { state: { message }, close } }) {
+function Dialog1({ dialog: { close, props: { message } } }) {
 
   console.log('render Dialog1');
 
   return (
-    <DialogContent onClose={close} title="Hello Dialog">
+    <Dialog onClose={close} title="Hello Dialog">
       <DialogContentText>{message} asdasdasdasdsad
         asdasdasdasdsad
         asdasdasdasdasdasdasdasddddddddddd
@@ -35,7 +35,7 @@ function Dialog1({ dialog: { state: { message }, close } }) {
          asdasd
       
       </DialogContentText>
-    </DialogContent>
+    </Dialog>
   );
 }
 Dialog1 = React.memo(Dialog1);
@@ -69,73 +69,86 @@ const initialize = () => ({
   ]
 });
 
-function Dialog2({ state: { message }, close }) {
+function Dialog2({ dialog: { close, props: { message } } }) {
 
   console.log('render Dialog2');
   const form = useForm(handleSubmit, initialize, validateForm, close);
 
   return (
-    <DialogFormContent form={form} onClose={close} title="Title 1">
+    <FormDialog form={form} onClose={close} title="Title 1" actions="reset-submit">
       <div>{message}</div>
       <div>
-        <TextField comp={form} name="firstname" />
+        <TextField style={{ width: '400px' }} comp={form} name="firstname" />
       </div>
       <div>
-        <TextField comp={form} name="lastname" />
+        <TextField style={{ width: '400px' }} comp={form} name="lastname" />
       </div>
-    </DialogFormContent>
+    </FormDialog>
   );
 }
 Dialog2 = React.memo(Dialog2);
 
-function Menu1({ close, data: [openDialog1, openDialog2], state: { message } }) {
+function Dialog3({ dialog: { close, props: { message } } }) {
+
+  console.log('render Dialog3');
+
+  return (
+    <ConfirmDialog onClose={close} title="Confirm Dialog">
+      <DialogContentText>
+        {message}
+      </DialogContentText>
+    </ConfirmDialog>
+  );
+}
+Dialog3 = React.memo(Dialog3);
+
+function Menu1({ menu: { close, props: { dialog1, dialog2, message } } }) {
 
   console.log('render Menu1');
 
   return (
     <>
-      <MenuItem onClick={() => { close(); openDialog1({ message }); }}>open dialog 1</MenuItem>
-      <MenuItem onClick={() => { close(); openDialog2({ message }); }}>open dialog 2</MenuItem>
+      <MenuItem onClick={() => { close(); dialog1.open({ message }); }}>open dialog 1</MenuItem>
+      <MenuItem onClick={() => { close(); dialog2.open({ message }); }}>open dialog 2</MenuItem>
     </>
   );
 }
 Menu1 = React.memo(Menu1, () => true);
 
-const data = [
-  {
-    name: 'John',
-    role: 'Admin'
-  },
-  {
-    name: 'Jack',
-    role: 'Admin'
-  },
-  {
-    name: 'Peter',
-    role: 'Moderator'
-  }
-];
+const data = {
+  users: [
+    {
+      name: 'John',
+      role: 'Admin'
+    },
+    {
+      name: 'Jack',
+      role: 'Admin'
+    },
+    {
+      name: 'Peter',
+      role: 'Moderator'
+    }
+  ]
+};
 
-const UserView = [
-  function UserItemView(user, [dialog1]) {
-    return (
-      <ListItem key={user.name}>
+function UserView({ user: { name, role }, dialog1 }) {
+  return (
+    <ListItem>
+      <div>
         <div>
-          <div>
-            {user.name}
-          </div>
-          <div>
-            {user.role}
-          </div>
+          {name}
         </div>
         <div>
-          <button onClick={() => dialog1.open({ message: user.name })}>edit</button>
+          {role}
         </div>
-      </ListItem>
-    );
-  },
-  user => user.name
-];
+      </div>
+      <div>
+        <button onClick={() => dialog1.open({ message: name })}>edit</button>
+      </div>
+    </ListItem>
+  );
+}
 
 const theme = createMuiTheme({});
 
@@ -145,30 +158,40 @@ function App() {
 
   const dialog1 = useDialog();
   const dialog2 = useDialog();
-  const menu1 = useMenu([dialog1.open, dialog2.open]);
-  const users = useElementArray(UserView, data, [dialog1, dialog2]);
+  const dialog3 = useDialog();
+  const menu1 = useMenu({ dialog1, dialog2 });
+  const users = useElementArray(UserView, data.users, { dialog1, key: user => user.name, data: 'user' });
 
   return (
     <ThemeProvider theme={theme}>
       <div>
         <button onClick={() => dialog1.open({ message: 'hello Dialog' })}>open dialog</button>
         <button onClick={() => dialog2.open({ message: 'hello FormDialog' })}>open form dialog</button>
+        <button onClick={() => dialog3.open({ message: 'Are you sure???' })}>open confirm dialog</button>
         <div>
           <button onClick={event => menu1.open(event, { message: 'lalala' })}>open context menu 1</button>
           <button onClick={menu1.open}>open context menu 2</button>
         </div>
+
         <List>
           {users}
         </List>
-        <Dialog store={dialog1}>
+
+        <DialogModal mgr={dialog1}>
           <Dialog1 dialog={dialog1} />
-        </Dialog>
-        <Dialog store={dialog2}>
+        </DialogModal>
+
+        <DialogModal mgr={dialog2}>
           {Dialog2}
-        </Dialog>
-        <Menu store={menu1}>
+        </DialogModal>
+
+        <DialogModal mgr={dialog3}>
+          {Dialog3}
+        </DialogModal>
+
+        <MenuModal mgr={menu1}>
           {Menu1}
-        </Menu>
+        </MenuModal>
         
       </div>
     </ThemeProvider>

@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
-import { MenuStore } from '../classes/MenuStore';
+import { Menu } from '../classes/Menu';
 
-export function useMenu(data) {
+export function useMenu(props) {
 
-  const menu = useMemo(() => new MenuStore(data), []);
+  const menu = useMemo(() => new Menu(props), []);
   return menu;
 }

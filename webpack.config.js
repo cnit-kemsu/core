@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { DuplicatesPlugin } = require("inspectpack/plugin");
+const { DuplicatesPlugin } = require('inspectpack/plugin');
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -19,7 +19,7 @@ module.exports = {
         include: [
           path.resolve(__dirname, 'test'),
           path.resolve(__dirname, 'src'),
-          path.resolve(__dirname, 'node_modules/@implicit')
+          path.resolve(__dirname, 'node_modules/@kemsu')
         ],
         loader: 'babel-loader',
         options: JSON.parse(fs.readFileSync('.babelrc'))

@@ -1,28 +1,23 @@
 export class Updater {
 
-  constructor(forceUpdate, observable) {
-    this.observable = observable;
+  constructor(forceUpdate, store) {
+    this.store = store;
     this.forceUpdate = forceUpdate;
 
-    this.handleChange = this.handleChange.bind(this);
-    this.unsubscribeFromEvents = this.unsubscribeFromEvents.bind(this);
-    this.handleSubscriptions = this.handleSubscriptions.bind(this);
+    this.unsubscribeFromUpdate = this.unsubscribeFromUpdate.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
-  handleChange() {
-    this.forceUpdate();
+  subscribeToUpdate() {
+    this.updateSub = this.store.updateEvent.subscribe(this.forceUpdate);
   }
 
-  subscribeToEvents() {
-    this.changeSub = this.observable.changeEvent.subscribe(this.handleChange);
+  unsubscribeFromUpdate() {
+    this.updateSub.unsubscribe();
   }
 
-  unsubscribeFromEvents() {
-    this.changeSub.unsubscribe();
-  }
-
-  handleSubscriptions() {
-    this.subscribeToEvents();
-    return this.unsubscribeFromEvents;
+  handleUpdate() {
+    this.subscribeToUpdate();
+    return this.unsubscribeFromUpdate;
   }
 }

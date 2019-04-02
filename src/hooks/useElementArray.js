@@ -1,16 +1,22 @@
 import React, { useMemo, useCallback } from 'react';
 
-export function useElementArray([renderItem, getKey], array, data) {
+function defaultKey(item) {
+  return item.id;
+}
 
-  const createItem = useCallback(
-    item => React.createElement(() => renderItem(item, data), { key: getKey(item) }),
+export function useElementArray(component, array, { key = defaultKey, data = 'data', ...props }) {
+
+  const createElement = useCallback(
+    item => React.createElement(component, {
+      key: key(item),
+      [data]: item,
+      ...props
+    }),
     []
   );
 
-  const items = useMemo(
-    () => array.map(createItem),
+  return useMemo(
+    () => array.map(createElement),
     [array]
   );
-
-  return items;
 }

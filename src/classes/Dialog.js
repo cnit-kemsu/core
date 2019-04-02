@@ -1,23 +1,26 @@
 import { Store } from './Store';
 
-export class DialogStore extends Store {
+export class Dialog extends Store {
+  state = {
+    open: false
+  };
+
   constructor() {
     super();
-    this.state = {
-      open: false
-    };
+    
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
   }
 
-  open(state) {
+  open(props) {
+    this.props = props;
     this.setState({
-      open: true,
-      ...state
+      open: true
     });
   }
 
   close() {
+    //this.props = undefined;
     this.setState({
       open: false
     });

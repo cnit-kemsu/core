@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
-import { DialogStore } from '../classes/DialogStore';
+import { Dialog } from '../classes/Dialog';
 
 export function useDialog() {
 
-  const dialog = useMemo(() => new DialogStore(), []);
+  const dialog = useMemo(() => new Dialog(), []);
   return dialog;
 }
