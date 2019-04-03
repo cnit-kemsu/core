@@ -70,7 +70,7 @@ const initialize = () => ({
   ]
 });
 
-function Dialog2({ dialog: { close, props: { message } } }) {
+function Dialog2(close, { message }) {
 
   console.log('render Dialog2');
   const form = useForm(handleSubmit, initialize, validateForm, close);
@@ -87,9 +87,8 @@ function Dialog2({ dialog: { close, props: { message } } }) {
     </FormDialog>
   );
 }
-Dialog2 = React.memo(Dialog2);
 
-function Dialog3({ dialog: { close, props: { message } } }) {
+function Dialog3(close, { message }) {
 
   console.log('render Dialog3');
 
@@ -101,9 +100,8 @@ function Dialog3({ dialog: { close, props: { message } } }) {
     </ConfirmDialog>
   );
 }
-Dialog3 = React.memo(Dialog3);
 
-function Menu1({ menu: { close, props: { dialog1, dialog2, message } } }) {
+function Menu1(close, { dialog1, dialog2, message }) {
 
   console.log('render Menu1');
 
@@ -114,7 +112,6 @@ function Menu1({ menu: { close, props: { dialog1, dialog2, message } } }) {
     </>
   );
 }
-Menu1 = React.memo(Menu1, () => true);
 
 const data = {
   users: [
@@ -133,7 +130,7 @@ const data = {
   ]
 };
 
-function UserView({ user: { name, role }, dialog1 }) {
+function UserView({ name, role }, { dialog1 }) {
   return (
     <ListItem>
       <div>
@@ -163,7 +160,7 @@ function App() {
   const dialog2 = useDialog();
   const dialog3 = useDialog();
   const menu1 = useMenu({ dialog1, dialog2 });
-  const users = useElementArray(UserView, data.users, { dialog1, key: user => user.name, data: 'user' });
+  const users = useElementArray(UserView, data.users, { dialog1, key: user => user.name });
 
   return (
     <ThemeProvider theme={theme}>

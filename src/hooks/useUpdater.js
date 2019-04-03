@@ -5,7 +5,7 @@ import { Updater } from '../classes/Updater';
 export function useUpdater(store) {
 
   const forceUpdate = useForceUpdate();
-  const updater = useMemo(() => new Updater(forceUpdate, store), []);
+  const updater = (() => new Updater(forceUpdate, store)) |> useMemo(#, []);
   
   useEffect(updater.handleUpdate, []);
 }

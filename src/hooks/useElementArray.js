@@ -1,22 +1,23 @@
 import React, { useMemo, useCallback } from 'react';
+import { memo } from './_shared';
 
-function defaultKey(item) {
-  return item.id;
+function defaultKey({ id }) {
+  return id;
 }
 
-export function useElementArray(component, array, { key = defaultKey, data = 'data', ...props }) {
+export function useElementArray(renderElement, array, { key = defaultKey, memoize = true, ...props }) {
 
-  const createElement = useCallback(
+  const component = (({ item }) => renderElement(item, props))
+  |> (() => memo(#, memoize)) 
+  |> useMemo(#, []);
+
+  const createElement = (
     item => React.createElement(component, {
       key: key(item),
-      [data]: item,
-      ...props
-    }),
-    []
-  );
+      item
+    })
+  ) |> useCallback(#, []);
 
-  return useMemo(
-    () => array.map(createElement),
-    [array]
-  );
+  return (() => array.map(createElement))
+  |> useMemo(#, [array]);
 }

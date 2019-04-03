@@ -3,6 +3,6 @@ import { Menu } from '../classes/Menu';
 
 export function useMenu(props) {
 
-  const menu = useMemo(() => new Menu(props), []);
-  return menu;
+  return (() => new Menu(props))
+  |> useMemo(#, []);
 }

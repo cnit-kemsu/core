@@ -3,6 +3,6 @@ import { Dialog } from '../classes/Dialog';
 
 export function useDialog() {
 
-  const dialog = useMemo(() => new Dialog(), []);
-  return dialog;
+  return (() => new Dialog())
+  |> useMemo(#, []);
 }

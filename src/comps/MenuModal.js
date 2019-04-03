@@ -1,22 +1,21 @@
-import React, { useRef } from 'react';
-import { isElements } from './_shared';
+import React from 'react';
 import { useUpdater } from '../hooks/useUpdater';
+import { useRenderer } from '../hooks/useRenderer';
+import { useHandler } from '../hooks/useHandler';
 import MuiMenu from '@material-ui/core/Menu';
 
-function MenuModal({ mgr: menu, children, ...props }) {
+const defaultMemoize = () => true;
+function MenuModal({ mgr: menu, children, memoize = defaultMemoize, ...muiMenuProps }) {
 
   useUpdater(menu);
-  
-  const childElements = useRef();
-  if (menu.state.target !== null || childElements.current === undefined) {
-    childElements.current = isElements(children) ? children
-    : React.createElement(children, { menu });
-  }
+  const renderChildren = useRenderer(props => children(menu.close, props), children, memoize);
+  const content = useHandler(() => renderChildren(menu.props), menu.state.target !== null);
 
   return (
     <MuiMenu open={Boolean(menu.state.target)} anchorEl={menu.state.target}
-    onClose={menu.close} disableAutoFocusItem {...props}>
-      {childElements.current}
+      onClose={menu.close} disableAutoFocusItem {...muiMenuProps}
+    >
+      {content}
     </MuiMenu>
   );
 }

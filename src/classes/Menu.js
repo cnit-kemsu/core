@@ -25,7 +25,7 @@ export class Menu extends Store {
   }
 
   close() {
-    //this.props = undefined;
+    this.props = undefined;
     this.setState({
       target: null
     });

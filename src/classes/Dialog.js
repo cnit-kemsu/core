@@ -20,7 +20,7 @@ export class Dialog extends Store {
   }
 
   close() {
-    //this.props = undefined;
+    this.props = undefined;
     this.setState({
       open: false
     });
