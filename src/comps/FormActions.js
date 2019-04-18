@@ -36,12 +36,12 @@ function filterClientInfo({ clientInfo }) {
 function mapToMessage({ message }, index) {
   return <Typography key={index} color="error">{message}</Typography>;
 }
-function displayErrors(errors) {
-  if (Array.isArray(errors)) {
-    return errors.filter(filterClientInfo)
+function displayErrors(graphqlError) {
+  if (graphqlError === undefined) return;
+  if (graphqlError.errors !== undefined) {
+    return graphqlError.errors.filter(filterClientInfo)
     .map(mapToMessage);
   }
-  return <Typography color="error">{errors}</Typography>;
 }
 
 function Actions({ form, submitText, submitIcon, actions }) {
@@ -52,7 +52,7 @@ function Actions({ form, submitText, submitIcon, actions }) {
     <div className={classes.actionsContent}>
 
       {/* <div className={classes.errorContent}> */}
-        {displayErrors(submitErrors)}
+        <>{displayErrors(submitErrors)}</>
       {/* </div> */}
       
       <div className={classes.buttonsContainer}>
