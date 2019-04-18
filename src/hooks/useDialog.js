@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { Dialog } from '../classes/Dialog';
 
-export function useDialog() {
+export function useDialog(props) {
 
-  return (() => new Dialog())
+  return (() => new Dialog(props))
   |> useMemo(#, []);
 }

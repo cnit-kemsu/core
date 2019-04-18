@@ -5,15 +5,20 @@ export class Dialog extends Store {
     open: false
   };
 
-  constructor() {
+  constructor(props) {
     super();
+
+    this.static = props;
     
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
   }
 
   open(props) {
-    this.props = props;
+    this.props = {
+      ...this.static,
+      ...props
+    };
     this.setState({
       open: true
     });

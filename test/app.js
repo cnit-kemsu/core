@@ -177,8 +177,7 @@ function App() {
           {users}
         </List>
 
-        <Paper style={{ width: '600px' }}
-        >
+        <Paper style={{ width: '600px' }}>
           <Form form={form} title="Some Form" actions='submit'>
             <div>
               <TextField style={{ width: '500px' }} comp={form} name="firstname" />
