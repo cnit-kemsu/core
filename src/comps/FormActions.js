@@ -30,6 +30,20 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+function filterClientInfo({ clientInfo }) {
+  return clientInfo === 'UNMET_CONSTRAINT';
+}
+function mapToMessage({ message }, index) {
+  return <Typography key={index} color="error">{message}</Typography>;
+}
+function displayErrors(errors) {
+  if (Array.isArray(errors)) {
+    return errors.filter(filterClientInfo)
+    .map(mapToMessage);
+  }
+  return <Typography color="error">{errors}</Typography>;
+}
+
 function Actions({ form, submitText, submitIcon, actions }) {
   const classes = useStyles({ actions });
   const { dirty, touched, hasErrors, submitErrors } = useFormStatus(form);
@@ -38,7 +52,7 @@ function Actions({ form, submitText, submitIcon, actions }) {
     <div className={classes.actionsContent}>
 
       {/* <div className={classes.errorContent}> */}
-        <Typography color="error">{submitErrors}</Typography>
+        {displayErrors(submitErrors)}
       {/* </div> */}
       
       <div className={classes.buttonsContainer}>
