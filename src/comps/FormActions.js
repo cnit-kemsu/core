@@ -18,18 +18,19 @@ const useStyles = makeStyles(theme => ({
   submitIcon: {
     marginRight: theme.spacing(1)
   },
-  actionsContent: {
-    display: 'block',
-    width: '100%',
-  },
   // errorContent: {
   //   minHeight: '24px'
   // },
-  buttonsContainer: ({ actions }) => actions === 'submit' ? {
+  actionsContent: ({ actions }) => actions === 'submit' ? {
     paddingLeft: '16px',
     paddingRight: '16px',
-    paddingTop: theme.spacing(1)
+    display: 'block',
+    width: '100%'
   } : {
+    display: 'block',
+    width: '100%'
+  },
+  buttonsContainer: {
     paddingTop: theme.spacing(1)
   }
 }));
