@@ -25,7 +25,11 @@ const useStyles = makeStyles(theme => ({
   // errorContent: {
   //   minHeight: '24px'
   // },
-  buttonsContainer: {
+  buttonsContainer: ({ actions }) => actions === 'submit' ? {
+    paddingLeft: '16px',
+    paddingTop: '16px',
+    paddingTop: theme.spacing(1)
+  } : {
     paddingTop: theme.spacing(1)
   }
 }));
