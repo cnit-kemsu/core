@@ -5,7 +5,7 @@ function defaultKey({ id }) {
   return id;
 }
 
-export function useElementArray(renderElement, array, { key = defaultKey, memoize = true, ...props }) {
+export function useElementArray(renderElement, array = [], { key = defaultKey, memoize = true, ...props }) {
 
   const component = (({ item }) => renderElement(item, props))
   |> (() => memo(#, memoize)) 
