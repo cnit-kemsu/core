@@ -7,7 +7,7 @@ import ChevronLeft from '@material-ui/icons/ChevronLeft';
 import ChevronRight from '@material-ui/icons/ChevronRight';
 import { Paginator as useStyles } from './styles';
 
-function Paginator({ total, limit = 10, offset, onChange }) {
+function Paginator({ total, limit = 10, offset = 0, onChange }) {
   const { update, previous, next } = (() => new Pagination(onChange)) |> useMemo(#);
   update(total, limit, offset);
 
