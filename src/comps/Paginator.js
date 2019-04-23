@@ -15,7 +15,7 @@ function Paginator({ total, limit = 10, offset = 0, onChange }) {
   return <div className={classes.root}>
 
     <Typography component="span" className={classes.title}>
-      Показано {offset + 1}-{offset + limit} элементов из {total}
+      Показано {offset + 1}-{offset + limit |> # < total && # || total} элементов из {total}
       {/* Показано
       <span className={classes.current}>
         {' ' + (offset + 1) + '-' + (offset + limit) + ' '}
