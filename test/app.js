@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import { TextField } from '@kemsu/inputs';
@@ -15,6 +15,7 @@ import DialogModal from '../src/comps/DialogModal';
 import MenuModal from '../src/comps/MenuModal';
 import List from '../src/comps/List';
 import Paper from '../src/comps/Paper';
+import Paginator from '../src/comps/Paginator';
 
 import Button from '@material-ui/core/Button';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -148,11 +149,21 @@ function UserView({ name, role }, { dialog1 }) {
   );
 }
 
-const theme = createMuiTheme({});
+const theme = createMuiTheme({
+  overrides: {
+    MuiTooltip: {
+      tooltip: {
+        userSelect: 'none'
+      }
+    }
+  }
+});
 
 function App() {
 
   console.log('render App');
+
+  const [offset, changeOffset] = useState(0);
 
   const form = useForm(handleSubmit, initialize, validateForm);
 
@@ -204,6 +215,8 @@ function App() {
         <MenuModal mgr={menu1}>
           {Menu1}
         </MenuModal>
+
+        <Paginator offset={offset} onChange={(_) => changeOffset(_)} total={100} />
         
       </div>
     </ThemeProvider>
