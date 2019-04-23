@@ -163,7 +163,7 @@ function App() {
 
   console.log('render App');
 
-  const [offset, changeOffset] = useState(0);
+  const [offset, changeOffset] = useState(undefined);
 
   const form = useForm(handleSubmit, initialize, validateForm);
 
