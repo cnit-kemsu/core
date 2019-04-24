@@ -21,3 +21,30 @@ export const Paginator = makeStyles({
   }
 });
 
+export const Loader = makeStyles({
+  root: {
+    position: 'relative'
+  },
+  justifier: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: 'fit-content',
+    minHeight: '44px'
+  },
+  progressCircle: {
+    position: 'absolute',
+    zIndex: '2700'
+  },
+  uiBlocker: {
+    backgroundColor: 'white',
+    opacity: '0.5',
+    position: 'absolute',
+    top: '0px',
+    left: '0px',
+    width: '100%',
+    height: '100%',
+    zIndex: '2600'
+  }
+});
