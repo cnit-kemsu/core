@@ -9,5 +9,5 @@ export { default as DialogModal } from './src/comps/DialogModal';
 export { default as MenuModal } from './src/comps/MenuModal';
 export { default as List } from './src/comps/List';
 export { default as Paper } from './src/comps/Paper';
-export { default as Paginator } from './src/comps/Paginator';
+export { default as ListNavigator } from './src/comps/ListNavigator';
 export { default as Loader } from './src/comps/Loader';
