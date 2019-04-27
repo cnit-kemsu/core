@@ -35,7 +35,7 @@ export const Loader = makeStyles({
   },
   progressCircle: {
     position: 'absolute',
-    zIndex: '2700'
+    zIndex: '900'
   },
   uiBlocker: {
     backgroundColor: 'white',
@@ -45,6 +45,6 @@ export const Loader = makeStyles({
     left: '0px',
     width: '100%',
     height: '100%',
-    zIndex: '2600'
+    zIndex: '800'
   }
 });
