@@ -9,15 +9,10 @@ function cloneWithAddedKeyProp(path) {
   return React.Children.map(path, setKeyOfChild);
 }
 
-function renderBreadcrubms(path) {
-  return <MuiBreadcrumbs>
-    {cloneWithAddedKeyProp(path)}
+export function Breadcrumbs({ childArray, children, ...props }) {
+ const _children = (() => cloneWithAddedKeyProp(childArray))
+ |> useMemo(#, childArray);
+  return <MuiBreadcrumbs {...props}>
+    {children !== undefined ? children : _children}
   </MuiBreadcrumbs>;
-}
-
-export function Breadcrumbs({ path, children }) {
-  if (children !== undefined) return children;
- return (
-    () => renderBreadcrubms(path)
-  ) |> useMemo(#, path);
 }
