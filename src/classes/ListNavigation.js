@@ -1,4 +1,4 @@
-export class Pagination {
+export class ListNavigation {
   constructor(onChange) {
     this.onChange = onChange;
 

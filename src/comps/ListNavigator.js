@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Pagination } from '../classes/Pagination';
+import { ListNavigation } from '../classes/ListNavigation';
 import Typography from '@material-ui/core/Typography';
 //import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
@@ -8,7 +8,7 @@ import ChevronRight from '@material-ui/icons/ChevronRight';
 import { Paginator as useStyles } from './styles';
 
 function ListNavigator({ total, limit = 10, offset = 0, onChange }) {
-  const { update, previous, next } = (() => new Pagination(onChange)) |> useMemo(#);
+  const { update, previous, next } = (() => new ListNavigation(onChange)) |> useMemo(#);
   update(total, limit, offset);
 
   const classes = useStyles();

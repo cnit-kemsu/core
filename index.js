@@ -11,3 +11,4 @@ export { default as List } from './src/comps/List';
 export { default as Paper } from './src/comps/Paper';
 export { default as ListNavigator } from './src/comps/ListNavigator';
 export { default as Loader } from './src/comps/Loader';
+export { Breadcrumbs } from './src/comps/Breadcrumbs';
