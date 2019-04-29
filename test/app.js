@@ -15,7 +15,9 @@ import DialogModal from '../src/comps/DialogModal';
 import MenuModal from '../src/comps/MenuModal';
 import List from '../src/comps/List';
 import Paper from '../src/comps/Paper';
-import Paginator from '../src/comps/Paginator';
+import ListNavigator from '../src/comps/ListNavigator';
+import { Breadcrumbs } from '../src/comps/Breadcrumbs';
+import Layout, { LayoutElement } from '../src/comps/Layout';
 
 import Button from '@material-ui/core/Button';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -23,6 +25,8 @@ import { ThemeProvider } from '@material-ui/styles';
 import { createMuiTheme } from "@material-ui/core/styles";
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItem from '@material-ui/core/ListItem';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 
 function Dialog1({ dialog: { close, props: { message } } }) {
 
@@ -74,7 +78,7 @@ const initialize = () => ({
 function Dialog2(close, { message }) {
 
   console.log('render Dialog2');
-  const form = useForm(handleSubmit, initialize, validateForm, close);
+  const form = useForm(handleSubmit, validateForm, initialize, close);
 
   return (
     <FormDialog form={form} onClose={close} title="Title 1" actions="reset-submit">
@@ -165,7 +169,7 @@ function App() {
 
   const [offset, changeOffset] = useState(undefined);
 
-  const form = useForm(handleSubmit, initialize, validateForm);
+  const form = useForm(handleSubmit, validateForm, initialize);
 
   const dialog1 = useDialog();
   const dialog2 = useDialog();
@@ -216,11 +220,32 @@ function App() {
           {Menu1}
         </MenuModal>
 
-        <Paginator offset={offset} onChange={(_) => changeOffset(_)} total={100} />
+        <ListNavigator offset={offset} onChange={(_) => changeOffset(_)} total={100} />
+        <Breadcrumbs path={[
+          <Typography>Пользователи</Typography>,
+          <Link color="textPrimary">Создать</Link>
+        ]} />
+
+        <Layout render={renderLayout}>
+          <>
+            <LayoutElement>123</LayoutElement>
+            <LayoutElement>qwe</LayoutElement>
+            <LayoutElement>abc</LayoutElement>
+          </>
+        </Layout>
         
       </div>
     </ThemeProvider>
   );
+}
+
+function renderLayout([element1, element2, element3]) {
+  console.log('renderLayout');
+  return <>
+    <div style={{ color: 'red' }}>{element1}</div>
+    <div style={{ color: 'green' }}>{element2}</div>
+    <div style={{ color: 'blue' }}>{element3}</div>
+  </>;
 }
 
 ReactDOM.render(
