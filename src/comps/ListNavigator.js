@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 import ChevronRight from '@material-ui/icons/ChevronRight';
-import { Paginator as useStyles } from './styles';
+import { ListNavigator as useStyles } from './styles';
 
 function ListNavigator({ total, limit = 10, offset = 0, onChange }) {
   const { update, previous, next } = (() => new ListNavigation(onChange)) |> useMemo(#);

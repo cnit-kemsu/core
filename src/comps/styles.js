@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export const Paginator = makeStyles({
+export const ListNavigator = makeStyles({
   root: {
     display: 'flex',
     alignItems: 'center',
