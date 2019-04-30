@@ -16,8 +16,7 @@ import MenuModal from '../src/comps/MenuModal';
 import List from '../src/comps/List';
 import Paper from '../src/comps/Paper';
 import ListNavigator from '../src/comps/ListNavigator';
-import { Breadcrumbs } from '../src/comps/Breadcrumbs';
-import Layout, { LayoutElement } from '../src/comps/Layout';
+import Link from '../src/comps/Link';
 
 import Button from '@material-ui/core/Button';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -26,7 +25,7 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 
 function Dialog1({ dialog: { close, props: { message } } }) {
 
@@ -221,31 +220,15 @@ function App() {
         </MenuModal>
 
         <ListNavigator offset={offset} onChange={(_) => changeOffset(_)} total={100} />
-        <Breadcrumbs path={[
+        <Breadcrumbs>
           <Typography>Пользователи</Typography>,
-          <Link color="textPrimary">Создать</Link>
-        ]} />
-
-        <Layout render={renderLayout}>
-          <>
-            <LayoutElement>123</LayoutElement>
-            <LayoutElement>qwe</LayoutElement>
-            <LayoutElement>abc</LayoutElement>
-          </>
-        </Layout>
+          <Link styled path="/">Создать</Link>,
+          <Link path="/admin">Создать</Link>
+        </Breadcrumbs>
         
       </div>
     </ThemeProvider>
   );
-}
-
-function renderLayout([element1, element2, element3]) {
-  console.log('renderLayout');
-  return <>
-    <div style={{ color: 'red' }}>{element1}</div>
-    <div style={{ color: 'green' }}>{element2}</div>
-    <div style={{ color: 'blue' }}>{element3}</div>
-  </>;
 }
 
 ReactDOM.render(

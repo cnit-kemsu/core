@@ -48,3 +48,9 @@ export const Loader = makeStyles({
     zIndex: '800'
   }
 });
+
+export const Link = makeStyles({
+  styledLink: {
+    cursor: 'pointer'
+  }
+});
