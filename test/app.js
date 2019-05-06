@@ -10,6 +10,8 @@ import { useElementArray } from '../src/hooks/useElementArray';
 import Dialog from '../src/comps/Dialog';
 import FormDialog from '../src/comps/FormDialog';
 import Form from '../src/comps/Form';
+import ResetButton from '../src/comps/ResetButton';
+import SubmitFab from '../src/comps/SubmitFab';
 import ConfirmDialog from '../src/comps/ConfirmDialog';
 import DialogModal from '../src/comps/DialogModal';
 import MenuModal from '../src/comps/MenuModal';
@@ -116,6 +118,7 @@ function Menu1(close, { dialog1, dialog2, message }) {
     </>
   );
 }
+//Menu1 = React.forwardRef(Menu1);
 
 const data = {
   users: [
@@ -192,15 +195,17 @@ function App() {
         </List>
 
         <Paper style={{ width: '600px' }}>
-          <Form form={form} title="Some Form" actions='submit'>
+          <Form form={form} title="Some Form" actions='submit-reset'>
             <div>
               <TextField style={{ width: '500px' }} comp={form} name="firstname" />
             </div>
             <div>
               <TextField style={{ width: '500px' }} comp={form} name="lastname" />
             </div>
-          </Form>  
+          </Form>
         </Paper>
+        <ResetButton form={form} />
+        <SubmitFab form={form} />
         
 
         <DialogModal mgr={dialog1}>
@@ -218,6 +223,11 @@ function App() {
         <MenuModal mgr={menu1}>
           {Menu1}
         </MenuModal>
+
+        {/* <MenuModal mgr={menu1}>
+          <MenuItem onClick={() => { menu1.close(); dialog1.open({ message: '111' }); }}>open dialog 1</MenuItem>
+          <MenuItem onClick={() => { menu1.close(); dialog2.open({ message: '111' }); }}>open dialog 2</MenuItem>
+        </MenuModal> */}
 
         <ListNavigator offset={offset} onChange={(_) => changeOffset(_)} total={100} />
         <Breadcrumbs>

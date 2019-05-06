@@ -8,6 +8,6 @@ export function useRenderer(renderFunc, content, memoize = true) {
     Array.isArray(content) || content?.$$typeof === reactElementType
     ? () => content
     : memo(renderFunc, memoize)
-    |> (props => React.createElement(#, props))
+    |> ((props, ref) => React.createElement(#, { ref, ...props }))
   ) |> useMemo(#, []);
 }

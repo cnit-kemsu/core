@@ -54,3 +54,16 @@ export const Link = makeStyles({
     cursor: 'pointer'
   }
 });
+
+export const Fab = makeStyles(theme => ({
+  root: {
+    position: 'fixed !important',
+    bottom: '48px !important',
+    right: '48px !important',
+    color: theme.palette.common.white + ' !important',
+    backgroundColor: '#191919 !important'
+  },
+  icon: {
+    marginRight: '12px'
+  }
+}));
