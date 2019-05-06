@@ -12,3 +12,6 @@ export { default as Paper } from './src/comps/Paper';
 export { default as ListNavigator } from './src/comps/ListNavigator';
 export { default as Loader } from './src/comps/Loader';
 export { default as Link } from './src/comps/Link';
+export { default as SubmitFab } from './src/comps/SubmitFab';
+export { default as ResetButton } from './src/comps/ResetButton';
+export { default as FormErrors } from './src/comps/FormErrors';
