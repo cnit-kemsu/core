@@ -59,9 +59,15 @@ export const Fab = makeStyles(theme => ({
   root: {
     position: 'fixed !important',
     bottom: '48px !important',
-    right: '48px !important',
+    right: '48px !important'
+  },
+  enabled: {
     color: theme.palette.common.white + ' !important',
     backgroundColor: '#191919 !important'
+  },
+  disabled: {
+    color: 'ffffff3f !important',
+    backgroundColor: '#1919193f !important'
   },
   icon: {
     marginRight: '12px'
