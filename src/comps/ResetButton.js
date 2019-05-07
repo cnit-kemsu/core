@@ -5,9 +5,10 @@ import Button from '@material-ui/core/Button';
 function ResetButton({ form, children = 'Сбросить', ...props }) {
   const { dirty } = useFormStatus(form);
 
-  return <Button color="primary" variant="outlined"
+  return <Button size="small" color="secondary"
     data-control disabled={!dirty} onClick={form.reset} {...props}
   >
+    <ClearIcon />
     {children}
   </Button>;
 }
