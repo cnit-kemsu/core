@@ -1,6 +1,7 @@
 import React from 'react';
-import { useFormStatus } from '@kemsu/form';
 import Button from '@material-ui/core/Button';
+import ClearIcon from '@material-ui/icons/Clear';
+import { useFormStatus } from '@kemsu/form';
 
 function ResetButton({ form, children = 'Сбросить', ...props }) {
   const { dirty } = useFormStatus(form);
