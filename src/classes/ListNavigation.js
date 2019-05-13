@@ -14,7 +14,11 @@ export class ListNavigation {
   }
 
   previous() {
-    this.onChange(this.offset - this.limit, this.limit);
+    this.onChange(
+      this.offset - this.limit
+      |> # > 0 && # || 0,
+      this.limit
+    );
   }
 
   next() {
