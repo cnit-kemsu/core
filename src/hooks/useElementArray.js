@@ -18,6 +18,6 @@ export function useElementArray(renderElement, array = [], { key = defaultKey, m
     })
   ) |> useCallback(#, []);
 
-  return (() => array.map(createElement))
+  return (() => array && array.map(createElement))
   |> useMemo(#, [array]);
 }
