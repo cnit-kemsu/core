@@ -10,7 +10,7 @@ export class ListNavigation {
   update(total, limit, offset) {
     this.total = total;
     this.limit = limit;
-    this.offset = offset <= total - limit ? offset : total - limit;
+    this.offset = offset < total ? offset : total - limit;
   }
 
   previous() {
