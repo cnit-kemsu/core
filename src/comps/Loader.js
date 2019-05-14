@@ -1,6 +1,6 @@
 import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { Error } from './Error';
+import Error from './Error';
 import { Loader as useStyles } from './styles';
 
 function Loader({ loading, errors, children }) {
