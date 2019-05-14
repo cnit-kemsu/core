@@ -1,4 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
+import green from '@material-ui/core/colors/green';
+import amber from '@material-ui/core/colors/amber';
 
 export const ListNavigator = makeStyles({
   root: {
@@ -83,3 +85,29 @@ export const Error = makeStyles({
     marginRight: '4px'
   }
 });
+
+export const NoteItem = makeStyles(theme => ({
+  root: {
+    margin: theme.spacing.unit
+  },
+  message: {
+    display: 'flex',
+    maxWidth: '290px'
+  },
+  icon: {
+    fontSize: 20,
+    marginRight: theme.spacing.unit
+  },
+  success: {
+    backgroundColor: green[600]
+  },
+  warning: {
+    backgroundColor: amber[700]
+  },
+  error: {
+    backgroundColor: theme.palette.error.dark
+  },
+  info: {
+    backgroundColor: theme.palette.primary.dark
+  },
+}));
