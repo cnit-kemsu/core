@@ -1,9 +1,9 @@
 import React from 'react';
 import { useFormStatus } from '@kemsu/form';
 import { makeStyles } from '@material-ui/styles';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
+import { displayErrors } from './FormErrors';
 
 const useStyles = makeStyles(theme => ({
   resetButton: {
@@ -34,20 +34,6 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(1)
   }
 }));
-
-function filterClientInfo({ clientInfo }) {
-  return clientInfo === 'UNMET_CONSTRAINT';
-}
-function mapToMessage({ message }, index) {
-  return <Typography key={index} color="error">{message}</Typography>;
-}
-function displayErrors(graphqlError) {
-  if (graphqlError === undefined) return;
-  if (graphqlError.errors !== undefined) {
-    return graphqlError.errors.filter(filterClientInfo)
-    .map(mapToMessage);
-  }
-}
 
 function Actions({ form, submitText, submitIcon, actions }) {
   const classes = useStyles({ actions });

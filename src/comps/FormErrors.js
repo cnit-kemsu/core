@@ -8,16 +8,16 @@ function onlyUnmetConstaint({ clientInfo }) {
 function mapToMessage({ message }, index) {
   return <Typography key={index} color="error">{message}</Typography>;
 }
+export function displayErrors(errors) {
+  if (errors === undefined) return;
+  return errors.filter(onlyUnmetConstaint)
+  .map(mapToMessage);
+}
 
 function FormErrors({ form }) {
   const { submitErrors } = useFormStatus(form);
 
-  if (submitErrors === undefined) return;
-  if (submitErrors.errors !== undefined) {
-    return submitErrors.errors
-      .filter(onlyUnmetConstaint)
-      .map(mapToMessage);
-  }
+  return displayErrors(submitErrors);
 }
 
 export default React.memo(FormErrors);
