@@ -73,3 +73,13 @@ export const Fab = makeStyles(theme => ({
     marginRight: '12px'
   }
 }));
+
+export const Error = makeStyles({
+  root: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  icon: {
+    marginRight: '4px'
+  }
+});
