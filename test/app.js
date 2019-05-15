@@ -29,6 +29,9 @@ import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 
+import Notifier from '../src/comps/Notifier';
+import { Notifications } from '../src/classes/Notifications';
+
 function Dialog1({ dialog: { close, props: { message } } }) {
 
   console.log('render Dialog1');
@@ -235,6 +238,19 @@ function App() {
           <Link styled path="/">Создать</Link>,
           <Link path="/admin">Создать</Link>
         </Breadcrumbs>
+
+        <button onClick={() => Notifications.push('lalala')}>push notification</button>
+        <button onClick={() => Notifications.push('lalala', 'success')}>push notification success</button>
+        <button onClick={() => Notifications.push('lalala', 'info')}>push notification info</button>
+        <button onClick={() => Notifications.push('lalala', 'warning')}>push notification warning</button>
+        <button onClick={() => Notifications.push(
+          (remove) => <>
+            This is an error message
+            <Button size="small" onClick={remove}>remove</Button>
+          </>
+          , 'error')}>push notification error</button>
+
+        <Notifier marginLeft="100px" />
         
       </div>
     </ThemeProvider>

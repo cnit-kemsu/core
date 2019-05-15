@@ -16,3 +16,5 @@ export { default as Fab } from './src/comps/Fab';
 export { default as SubmitFab } from './src/comps/SubmitFab';
 export { default as ResetButton } from './src/comps/ResetButton';
 export { default as FormErrors } from './src/comps/FormErrors';
+export { Notifications } from './src/classes/Notifications';
+export { default as Notifier } from './src/comps/Notifier';

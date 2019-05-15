@@ -86,9 +86,9 @@ export const Error = makeStyles({
   }
 });
 
-export const NoteItem = makeStyles(theme => ({
+export const Notification = makeStyles(theme => ({
   root: {
-    margin: theme.spacing.unit
+    margin: theme.spacing(1)
   },
   message: {
     display: 'flex',
@@ -96,18 +96,27 @@ export const NoteItem = makeStyles(theme => ({
   },
   icon: {
     fontSize: 20,
-    marginRight: theme.spacing.unit
+    marginRight: theme.spacing(1)
   },
   success: {
-    backgroundColor: green[600]
+    backgroundColor: green[600] + ' !important'
   },
   warning: {
-    backgroundColor: amber[700]
+    backgroundColor: amber[700] + ' !important'
   },
   error: {
-    backgroundColor: theme.palette.error.dark
+    backgroundColor: theme.palette.error.dark + ' !important'
   },
   info: {
-    backgroundColor: theme.palette.primary.dark
+    backgroundColor: theme.palette.primary.dark + ' !important'
   },
 }));
+
+export const Notifier = makeStyles({
+  root: {
+    //zIndex: 1400,
+    position: 'fixed',
+    bottom: 24,
+    left: 24
+  }
+});
