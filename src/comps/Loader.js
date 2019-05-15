@@ -10,7 +10,7 @@ function Loader({ loading, errors, children }) {
   return <div className={classes.root}>
     <div className={classes.justifier}>
       {loading && <CircularProgress className={classes.progressCircle} />}
-      <div>
+      <div className={classes.content}>
         {!errors && children}
       </div>
     </div>

@@ -35,6 +35,9 @@ export const Loader = makeStyles({
     height: 'fit-content',
     minHeight: '44px'
   },
+  content: {
+    width: '100%'
+  },
   progressCircle: {
     position: 'absolute',
     zIndex: '900'
