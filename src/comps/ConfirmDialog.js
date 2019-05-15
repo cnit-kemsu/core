@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -16,10 +16,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function ConfirmDialog({ onConfirm, onClose, title, children, confirmText, confirmIcon }) {
+function ConfirmDialog({ onConfirm, closeOnComplete = true, onClose, title, children, confirmText, confirmIcon }) {
+  const confirm = useCallback(
+    async () => {
+      await onConfirm();
+      if (closeOnComplete) onClose();
+    },
+    []
+  );
 
   const classes = useStyles();
-  
   return (
     <>
       <DialogTitle>{title}</DialogTitle>
@@ -34,7 +40,7 @@ function ConfirmDialog({ onConfirm, onClose, title, children, confirmText, confi
           Отменить
         </Button>
 
-        <Button color="primary" variant="contained" onClick={onConfirm}>
+        <Button color="primary" variant="contained" onClick={confirm}>
           {confirmIcon && React.createElement(confirmIcon, { className: classes.confirmIcon })}
           {confirmText}
         </Button>
