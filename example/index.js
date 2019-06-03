@@ -66,10 +66,10 @@ function validateForm({ firstname, data }) {
 async function handleSubmit(values) {
   await new Promise(resolve => setTimeout(resolve, 1000));
   console.log(values);
-  if (values.firstname === 'John') return 'John is invalid firstname';
+  if (values.firstname === 'John') return [{ message: 'John is invalid firstname', clientInfo: 'UNMET_CONSTRAINT' }];
 }
 
-const initialize = () => ({
+const initValues = {
   firstname: 'John',
   friends: [
     {
@@ -77,15 +77,17 @@ const initialize = () => ({
       lastname: 'Cooper'
     }
   ]
-});
+};
 
 function Dialog2(close, { message }) {
 
   console.log('render Dialog2');
-  const form = useForm(handleSubmit, validateForm, initialize, close);
+  const form = useForm(handleSubmit, initValues, validateForm, close);
 
   return (
-    <FormDialog form={form} onClose={close} title="Title 1" actions="reset-submit">
+    <FormDialog comp={form} onClose={close} title="Title 1" 
+    // resetText={null}
+    >
       <div>{message}</div>
       <div>
         <TextField style={{ width: '400px' }} comp={form} name="firstname" />
@@ -174,7 +176,7 @@ function App() {
 
   const [offset, changeOffset] = useState(undefined);
 
-  const form = useForm(handleSubmit, validateForm, initialize);
+  const form = useForm(handleSubmit, initValues, validateForm);
 
   const dialog1 = useDialog();
   const dialog2 = useDialog();
@@ -198,7 +200,7 @@ function App() {
         </List>
 
         <Paper style={{ width: '600px' }}>
-          <Form form={form} title="Some Form" actions=''>
+          <Form comp={form} title="Some Form">
             <div>
               <TextField style={{ width: '500px' }} comp={form} name="firstname" />
             </div>
@@ -207,8 +209,8 @@ function App() {
             </div>
           </Form>
         </Paper>
-        <ResetButton form={form} />
-        <SubmitFab form={form} />
+        <ResetButton comp={form} />
+        <SubmitFab comp={form} />
         
 
         <DialogModal mgr={dialog1}>

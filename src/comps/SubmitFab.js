@@ -1,14 +1,25 @@
 import React from 'react';
 import SendIcon from '@material-ui/icons/Send';
-import { useFormStatus } from '@kemsu/form';
+import { useFormSubscriber } from '@kemsu/form';
 import Fab from './Fab';
 
-function SubmitFab({ form, icon = SendIcon, children = 'Отправить', disableIfNotDirty = false, disabled, ...props }) {
-  const { hasErrors, touched, dirty } = useFormStatus(form);
+function SubmitFab({ comp, icon, children, disableIfNotDirty, disabled, ...props }) {
+  const { dirty, touched, hasErrors, submit } = useFormSubscriber(comp);
+  const _disabled = (touched && hasErrors)
+    || (disableIfNotDirty && !dirty)
+    || disabled;
 
-  return <Fab icon={icon} data-control disabled={(hasErrors && touched) || (disableIfNotDirty && !dirty) || disabled} onClick={form.submit} {...props}>
+  return <Fab data-control icon={icon} onClick={submit} 
+    disabled={_disabled} {...props}
+  >
     {children}
   </Fab>;
 }
+
+SubmitFab.defaultProps = {
+  icon: SendIcon,
+  children: 'Отправить',
+  disableIfNotDirty: false
+};
 
 export default React.memo(SubmitFab);

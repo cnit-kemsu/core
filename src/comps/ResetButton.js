@@ -1,17 +1,22 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import ClearIcon from '@material-ui/icons/Clear';
-import { useFormStatus } from '@kemsu/form';
+import { useFormSubscriber } from '@kemsu/form';
 
-function ResetButton({ form, children = 'Сбросить', disabled, ...props }) {
-  const { dirty } = useFormStatus(form);
+function ResetButton({ comp, children, disabled, ...props }) {
+  const { dirty, reset } = useFormSubscriber(comp);
+  const _disabled = !dirty || disabled;
 
-  return <Button size="small" color="secondary"
-    data-control disabled={!dirty || disabled} onClick={form.reset} {...props}
+  return <Button data-control size="small" color="secondary"
+    disabled={_disabled} onClick={reset} {...props}
   >
     <ClearIcon />
     {children}
   </Button>;
 }
+
+ResetButton.defaultProps = {
+  children: 'Сбросить'
+};
 
 export default React.memo(ResetButton);

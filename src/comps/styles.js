@@ -2,6 +2,47 @@ import { makeStyles } from "@material-ui/core/styles";
 import green from '@material-ui/core/colors/green';
 import amber from '@material-ui/core/colors/amber';
 
+const actions = {
+  flexDirection: 'column',
+  paddingLeft: '8px',
+  paddingRight: '16px'
+};
+
+export const FormDialog = makeStyles(theme => ({
+  closeButton: {
+    position: 'absolute',
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500]
+  },
+  actions
+}));
+
+export const Form = makeStyles({
+  actions
+});
+
+export const FormActions = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%'
+  },
+  submitButton: ({ resetText }) => resetText ? {} : {
+    flexGrow: '1'
+  },
+  submitIcon: {
+    marginRight: theme.spacing(1)
+  }
+}));
+
+export const FormErrors = makeStyles(theme => ({
+  root: {
+    width: '100%',
+    paddingBottom: theme.spacing(1)
+  }
+}));
+
 export const ListNavigator = makeStyles({
   root: {
     display: 'flex',
