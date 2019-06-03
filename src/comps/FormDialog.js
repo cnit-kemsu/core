@@ -5,6 +5,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { Fields } from '@kemsu/form';
 import FormActions from './FormActions';
 import FormErrors from './FormErrors';
 import { FormDialog as useStyles } from './styles';
@@ -21,7 +22,9 @@ function FormDialog({ onClose, comp, title, children, submitText, submitIcon, re
     </DialogTitle>
 
     <DialogContent>
-      {children}
+      <Fields comp={comp}>
+        {children}
+      </Fields>
     </DialogContent>
 
     <DialogActions className={classes.actions}>

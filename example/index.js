@@ -90,10 +90,10 @@ function Dialog2(close, { message }) {
     >
       <div>{message}</div>
       <div>
-        <TextField style={{ width: '400px' }} comp={form} name="firstname" />
+        <TextField style={{ width: '400px' }} name="firstname" />
       </div>
       <div>
-        <TextField style={{ width: '400px' }} comp={form} name="lastname" />
+        <TextField style={{ width: '400px' }} name="lastname" />
       </div>
     </FormDialog>
   );
@@ -202,10 +202,10 @@ function App() {
         <Paper style={{ width: '600px' }}>
           <Form comp={form} title="Some Form">
             <div>
-              <TextField style={{ width: '500px' }} comp={form} name="firstname" />
+              <TextField style={{ width: '500px' }} name="firstname" />
             </div>
             <div>
-              <TextField style={{ width: '500px' }} comp={form} name="lastname" />
+              <TextField style={{ width: '500px' }} name="lastname" />
             </div>
           </Form>
         </Paper>

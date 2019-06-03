@@ -2,7 +2,7 @@ import React from 'react';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
-import { useEnterClickSubmit } from '@kemsu/form';
+import { useEnterClickSubmit, Fields } from '@kemsu/form';
 import FormActions from './FormActions';
 import FormErrors from './FormErrors';
 import { Form as useStyles } from './styles';
@@ -15,7 +15,9 @@ function Form({ comp, title, children, submitText, submitIcon, resetText, disabl
     {title && <DialogTitle>{title}</DialogTitle>}
 
     <DialogContent>
-      {children}
+      <Fields comp={comp}>
+        {children}
+      </Fields>
     </DialogContent>
 
     <DialogActions className={classes.actions}>
