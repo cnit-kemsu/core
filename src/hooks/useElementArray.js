@@ -8,14 +8,13 @@ function defaultKey({ id }) {
 export function useElementArray(renderElement, array = [], { key = defaultKey, memoize = true, ...props }) {
 
   const component = (({ item }) => renderElement(item, props))
-  |> (() => memo(#, memoize)) 
+  |> (() => memo(#, memoize))
   |> useMemo(#, []);
 
   const createElement = (
     (item, index) => React.createElement(component, {
       key: key(item),
-      item,
-      index
+      item: { index, ...item }
     })
   ) |> useCallback(#, []);
 
