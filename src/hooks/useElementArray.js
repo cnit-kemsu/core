@@ -12,9 +12,10 @@ export function useElementArray(renderElement, array = [], { key = defaultKey, m
   |> useMemo(#, []);
 
   const createElement = (
-    item => React.createElement(component, {
+    (item, index) => React.createElement(component, {
       key: key(item),
-      item
+      item,
+      index
     })
   ) |> useCallback(#, []);
 
