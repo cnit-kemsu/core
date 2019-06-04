@@ -15,7 +15,7 @@ function FormDialog({ onClose, comp, title, children, submitText, submitIcon, re
   const classes = useStyles({ resetText });
   return <>
     <DialogTitle disableTypography>
-      <Typography className={classes.titile} variant="h6">{title}</Typography>
+      <Typography className={classes.title} variant="h6">{title}</Typography>
       <IconButton className={classes.closeButton} onClick={onClose}>
         <CloseIcon />
       </IconButton>
