@@ -15,6 +15,9 @@ export const FormDialog = makeStyles(theme => ({
     top: theme.spacing(1),
     color: theme.palette.grey[500]
   },
+  title: {
+    width: 'calc(100% - 36px)'
+  },
   actions
 }));
 
