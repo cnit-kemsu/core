@@ -14,7 +14,7 @@ export function useElementArray(renderElement, array = [], { key = defaultKey, m
   const createElement = (
     (item, index) => React.createElement(component, {
       key: key(item),
-      item: { index, ...item }
+      item: item.constructor === Object ? { index, ...item } : item
     })
   ) |> useCallback(#, []);
 
