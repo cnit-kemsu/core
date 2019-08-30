@@ -7,7 +7,11 @@ function defaultKey({ id }) {
 
 export function useElementArray(renderElement, array = [], { key = defaultKey, memoize = true, ...props }) {
 
-  const component = (({ item }) => renderElement(item, props))
+  const _props = React.useRef();
+  _props.current = props;
+  const getProps = React.useCallback(() => _props.current, [])
+
+  const component = (({ item }) => renderElement(item, getProps()))
   |> (() => memo(#, memoize))
   |> useMemo(#, []);
 
