@@ -17,7 +17,7 @@ function defaultKey({ id }) {
 
 //   const createElement = (
 //     (item, index) => React.createElement(component, {
-//       key: key(item),
+//       key: key(item, index),
 //       item: item.constructor === Object ? { index, ...item } : item
 //     })
 //   ) |> useCallback(#, []);

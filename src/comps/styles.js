@@ -69,7 +69,8 @@ export const ListNavigator = makeStyles({
 
 export const Loader = makeStyles({
   root: {
-    position: 'relative'
+    position: 'relative',
+    backgroundColor: 'transparent'
   },
   justifier: {
     display: 'flex',
