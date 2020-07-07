@@ -4,21 +4,21 @@ import ReactDOM from 'react-dom';
 import { TextField } from '@kemsu/inputs';
 import { useForm } from '@kemsu/form';
 
-import { useDialog } from '../src/hooks/useDialog';
-import { useMenu } from '../src/hooks/useMenu';
-import { useElementArray } from '../src/hooks/useElementArray';
-import Dialog from '../src/comps/Dialog';
-import FormDialog from '../src/comps/FormDialog';
-import Form from '../src/comps/Form';
-import ResetButton from '../src/comps/ResetButton';
-import SubmitFab from '../src/comps/SubmitFab';
-import ConfirmDialog from '../src/comps/ConfirmDialog';
-import DialogModal from '../src/comps/DialogModal';
-import MenuModal from '../src/comps/MenuModal';
-import List from '../src/comps/List';
-import Paper from '../src/comps/Paper';
-import ListNavigator from '../src/comps/ListNavigator';
-import Link from '../src/comps/Link';
+import { useDialog } from '@src/hooks/useDialog';
+import { useMenu } from '@src/hooks/useMenu';
+import { useElementArray } from '@src/hooks/useElementArray';
+import Dialog from '@src/components/Dialog';
+import FormDialog from '@src/components/FormDialog';
+import Form from '@src/components/Form';
+import ResetButton from '@src/components/ResetButton';
+import SubmitFab from '@src/components/SubmitFab';
+import ConfirmDialog from '@src/components/ConfirmDialog';
+import DialogModal from '@src/components/DialogModal';
+import MenuModal from '@src/components/MenuModal';
+import List from '@src/components/List';
+import Paper from '@src/components/Paper';
+import ListNavigator from '@src/components/ListNavigator';
+import Link from '@src/components/Link';
 
 import Button from '@material-ui/core/Button';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -29,8 +29,8 @@ import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 
-import Notifier from '../src/comps/Notifier';
-import { Notifications } from '../src/classes/Notifications';
+import Notifier from '@src/components/Notifier';
+import { Notifications } from '@src/classes/Notifications';
 
 function Dialog1({ dialog: { close, props: { message } } }) {
 
